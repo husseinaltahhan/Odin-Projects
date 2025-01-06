@@ -1,7 +1,25 @@
 let humanScore = 0;
 let computerScore = 0;
 
-console.log("Hello, World!");
+let compchoice = getComputerChoice();
+
+const box = document.querySelector(".box");
+
+const title = document.createElement("h1");
+title.innerText = "Make a choice!";
+title.style.margin = "auto";
+
+box.prepend(title);
+
+const compElement = document.createElement("h3");
+box.append(compElement);
+
+const message = document.createElement("h3");
+box.append(message);
+
+const humanScoreElement = document.querySelector(".playerscore");
+const compScoreElement = document.querySelector(".compscore");
+
 
 function getComputerChoice() {
     let random = Math.floor(Math.random() * 3);
@@ -26,18 +44,18 @@ function getHumanChoice() {
 }
 
 function playRound(humanChoice, computerChoice){
-    if (humanChoice === computerChoice){
+    if (humanChoice.toLowerCase() === computerChoice){
         return "It's a tie!";
     }
-    if (humanChoice === "rock" && computerChoice === "scissors"){
+    if (humanChoice.toLowerCase() === "rock" && computerChoice === "scissors"){
         humanScore++;
         return "You win! " + humanChoice + " beats " + computerChoice;
     }
-    if (humanChoice === "paper" && computerChoice === "rock"){
+    if (humanChoice.toLowerCase() === "paper" && computerChoice === "rock"){
         humanScore++;
         return "You win! " + humanChoice + " beats " + computerChoice;
     }
-    if (humanChoice === "scissors" && computerChoice === "paper"){
+    if (humanChoice.toLowerCase() === "scissors" && computerChoice === "paper"){
         humanScore++;
         return "You win! " + humanChoice + " beats " + computerChoice;
     }
@@ -45,6 +63,22 @@ function playRound(humanChoice, computerChoice){
     return "You lose! " + computerChoice + " beats " + humanChoice;
 }
 
+const buttons = document.querySelectorAll("button");
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        compchoice = getComputerChoice();
+        compElement.innerText = "Computer picked " + compchoice;
+        winner = playRound(button.innerText, compchoice);
+        humanScoreElement.innerText = "Player: " + humanScore;
+        compScoreElement.innerText = "Computer: " + computerScore;
+        console.log(winner);
+        message.innerText = winner;
+    });
+});
+
+
+/*
 function playGame(){
     for (let i = 0; i < 5; i++){
         let humanChoice = getHumanChoice();
@@ -60,8 +94,5 @@ function playGame(){
     } else {
         console.log("It's a tie!");
     }
-}
+}*/
 
-
-playGame();
-//console.log(getComputerChoice());

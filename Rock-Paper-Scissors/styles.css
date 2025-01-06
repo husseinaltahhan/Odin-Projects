@@ -1,0 +1,38 @@
+*{
+    margin : 0;
+    padding : 0;
+    box-sizing : border-box;
+}
+
+.sheet{
+    width : 100vw;
+    height : 100vh;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box{
+    display : flex;
+    flex-direction: column;
+    gap : 1rem;
+    border : 2px solid red;
+}
+
+.scores{
+    display:flex;
+    gap : 3rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons{
+    display : flex;
+    gap : 1rem;
+}
+
+button{
+    width : 6rem;
+    height : 2rem;
+    cursor : pointer;
+}
